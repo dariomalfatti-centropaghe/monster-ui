@@ -24,5 +24,8 @@ define({
 			loa: 'http://ui.zswitch.net/Editable.LOA.Form.pdf',
 			resporg: 'http://ui.zswitch.net/Editable.Resporg.Form.pdf'
 		}
+	},
+	api: {
+		'default': 'http://10.100.100.220:8000/v2/'
 	}
 });
