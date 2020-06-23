@@ -1,6 +1,8 @@
 {
-	"skeleton": {
-		"description": "Feel free to update the HTML template located in /apps/skeleton/views/layout.html. The Javascript to manage this app is located in /apps/skeleton/app.js.",
-		"welcome": "Welcome {{variable}} to the Skeleton App"
+	"localtrunks": {
+	  "description": "Feel free to update the HTML template located in /demo/views/layout.html. The Javascript to manager this app is located in /demo/app.js.",
+	  "noNumber": "No number matching your search, but you should probably do something about the css... (hint: it belongs in /apps/demo/app.css!)",
+	  "searchNumbers": "Search San Francisco Numbers",
+	  "welcome": "Welcome in the Demo App"
 	}
-}
+  }

@@ -40,22 +40,70 @@ define(function(require) {
 
 		// Entry Point of the app
 		render: function(container) {
-			var self = this;
 
-			monster.ui.generateAppLayout(self, {
-				menus: [
-					{
-						tabs: [
-							{
-								callback: self.renderWelcome
-							}
-						]
-					}
-				]
+			var self = this,
+				$container = _.isEmpty(container) ? $('#monster_content') : container,
+				$layout = $(self.getTemplate({
+					name: 'layout'
+				}));
+	
+			self.bindEvents({
+				template: $layout
 			});
+		
+			$container
+				.empty()
+				.append($layout);
+
+		},
+		
+		bindEvents: function(args) {
+
+			var self = this,
+				$template = args.template;
+		
+			$template.find('#search').on('click', function(e) {
+				self.searchNumbers(415, 30, function(listNumbers) {
+				var $results = $(self.getTemplate({
+					name: 'results',
+					data: {
+					numbers: listNumbers
+					}
+				}));
+		
+				$template
+					.find('.results')
+					.empty()
+					.append($results);
+				});
+			});
+
+		},
+	
+		searchNumbers: function(pattern, size, callback) {
+
+			var self = this;
+		
+			self.callApi({
+				resource: 'numbers.search',
+				data: {
+				accountId: self.accountId,
+				pattern: pattern,
+				limit: size,
+				offset: 5
+				},
+				success: function(data) {
+				callback(data.data);
+				},
+				error: function(parsedError) {
+				callback([]);
+				}
+			});
+
 		},
 
 		renderWelcome: function(pArgs) {
+
 			var self = this,
 				args = pArgs || {},
 				parent = args.container || $('#skeleton_app_container .app-content-wrapper'),
@@ -73,6 +121,7 @@ define(function(require) {
 						.append(template)
 						.fadeIn();
 				});
+				
 		}
 	};
 
