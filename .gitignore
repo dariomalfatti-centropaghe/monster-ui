@@ -10,6 +10,7 @@ src/apps/*
 !src/apps/myaccount/
 !src/apps/skeleton/
 !src/apps/tutorial/
+!src/apps/localtrunks/
 
 # Build directories
 dist*/
